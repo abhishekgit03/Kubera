@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/kubera-logo.svg" alt="Kubera" width="800"/>
+  <img src="docs/kubera-logo.svg" alt="Kubera" width="500"/>
 </p>
 
 # Kubera
@@ -8,7 +8,12 @@
 
 Kubera runs inside your cluster, watches every workload's resource requests vs actual usage, and generates a plain-English efficiency report when you click **Analyze** — powered by Gemini AI.
 
-![Dashboard showing namespace cost chart, sortable workload table, and AI narrative](docs/screenshot.png)
+<img width="1469" height="834" alt="Screenshot 2026-06-05 at 12 55 54 AM" src="https://github.com/user-attachments/assets/a5e913e1-b632-4174-994f-43d53934f4eb" />
+<img width="1469" height="834" alt="Screenshot 2026-06-05 at 12 56 32 AM" src="https://github.com/user-attachments/assets/8604a7b4-c743-4549-8123-b39b6b2c5697" />
+<img width="1469" height="834" alt="Screenshot 2026-06-05 at 12 56 40 AM" src="https://github.com/user-attachments/assets/95bf0b27-8bf7-4fa9-931a-63102bd671d2" />
+
+
+
 
 ## What it does
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/kubera-logo.svg" alt="Kubera" width="500"/>
+  <img src="docs/kubera-logo-cropped.svg" alt="Kubera" width="500"/>
 </p>
 
 # Kubera

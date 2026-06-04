@@ -1,0 +1,18 @@
+# Go
+backend/vendor/
+backend/*.test
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Embed placeholder (real dist is built at Docker time)
+backend/frontend/dist/
+!backend/frontend/dist/index.html
+
+# Env
+.env
+*.env
+
+# OS
+.DS_Store

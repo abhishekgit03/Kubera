@@ -1,0 +1,37 @@
+interface Props {
+  size?: number
+  className?: string
+}
+
+export function KuberaIcon({ size = 32, className = '' }: Props) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="42 14 116 136"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      {/* Outer hex — deep navy */}
+      <polygon points="100,14 158,48 158,116 100,150 42,116 42,48" fill="#0F2744" />
+      {/* Mid hex ring */}
+      <polygon points="100,26 146,52 146,112 100,138 54,112 54,52" fill="#1A3A5C" />
+      {/* Inner hex — teal accent */}
+      <polygon points="100,40 136,62 136,102 100,124 64,102 64,62" fill="#00B4D8" />
+      {/* Center diamond */}
+      <polygon points="100,54 120,82 100,110 80,82" fill="#0F2744" />
+      {/* Corner dots */}
+      <circle cx="100" cy="54" r="4" fill="#E0F7FA" />
+      <circle cx="120" cy="82" r="4" fill="#E0F7FA" />
+      <circle cx="100" cy="110" r="4" fill="#E0F7FA" />
+      <circle cx="80"  cy="82" r="4" fill="#E0F7FA" />
+      {/* Cross lines */}
+      <line x1="100" y1="54" x2="100" y2="110" stroke="#E0F7FA" strokeWidth="0.8" opacity="0.35" />
+      <line x1="80"  y1="82" x2="120" y2="82" stroke="#E0F7FA" strokeWidth="0.8" opacity="0.35" />
+      {/* Outer stroke */}
+      <polygon points="100,14 158,48 158,116 100,150 42,116 42,48" fill="none" stroke="#00B4D8" strokeWidth="1.5" />
+    </svg>
+  )
+}

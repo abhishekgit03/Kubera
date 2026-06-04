@@ -1,0 +1,40 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/abhishekgit03/kubera
+  tag: latest
+  pullPolicy: IfNotPresent
+
+gemini:
+  apiKey: ""               # set via --set or existingSecret
+  existingSecret: ""       # name of existing k8s secret with key GEMINI_API_KEY
+  model: "gemini-2.5-flash"
+
+collector:
+  refreshIntervalSeconds: 300   # poll k8s APIs every 5 minutes
+
+pricing:
+  cloudProvider: "aws"          # aws | gcp | azure
+  region: "us-east-1"
+  # These rates are used for RELATIVE RANKING only, not billing accuracy.
+  # Set them to any consistent value — the waste ranking will be correct.
+  # For rough estimates: use on-demand rates for your region / instance family.
+  cpuCostPerCoreHour: "0.048"
+  memCostPerGBHour: "0.006"
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+  host: "kubera.internal"
+  annotations: {}
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi

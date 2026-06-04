@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kubera.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "kubera.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "kubera.fullname" . }}
+    spec:
+      serviceAccountName: {{ include "kubera.fullname" . }}
+      containers:
+        - name: kubera
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+          env:
+            - name: GEMINI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  {{- if .Values.gemini.existingSecret }}
+                  name: {{ .Values.gemini.existingSecret }}
+                  {{- else }}
+                  name: {{ include "kubera.fullname" . }}-gemini
+                  {{- end }}
+                  key: GEMINI_API_KEY
+            - name: GEMINI_MODEL
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "kubera.fullname" . }}-config
+                  key: GEMINI_MODEL
+            - name: REFRESH_INTERVAL_SECONDS
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "kubera.fullname" . }}-config
+                  key: REFRESH_INTERVAL_SECONDS
+            - name: CPU_COST_PER_CORE_HOUR
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "kubera.fullname" . }}-config
+                  key: CPU_COST_PER_CORE_HOUR
+            - name: MEM_COST_PER_GB_HOUR
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "kubera.fullname" . }}-config
+                  key: MEM_COST_PER_GB_HOUR
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
